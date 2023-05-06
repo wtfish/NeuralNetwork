@@ -3,6 +3,8 @@
 - return_sequences=true, membuat rnn sequence to sequence yaitu setiap neuron akan memberikan output sebanyak data ke layer setelahnya
 jika false maka sequence to vector yaitu sejumlah neuron
 - Kalau pakai RNN Expected input 3D (batch,window,feature)
+- Cara adjust LR, training biasa tapi pakai scheaduler untuk naikin e nya, plot loss vs Epoch
+pilih epoch yang lossnya paling sedikit
 
 mis:
 batch = 4
@@ -17,3 +19,12 @@ jika false maka (None,40)
     =================================================================
         lambda_2 (Lambda)           (None, 20, 1)             0     
     maka None = batch || 20 Timestamp/window || 1 fitur
+- Cara lebih cepat untuk forecast predict pakai cara seperti membuat dataset tapi
+window_size sama, jangan di split, jangan dishuffle
+- Ketika loss function terdapat random spike : https://www.youtube.com/watch?v=4qJaSmvhxi8&ab_channel=DeepLearningAI
+maka adjust batchnya (bisa lebih besar)
+-If after the first epoch you get an output like this: loss: nan - mae: nan 
+it is very likely that your network is suffering from exploding gradients. 
+This is a common problem if you used SGD as optimizer and set a learning rate that 
+is too high. If you encounter this problem consider lowering the learning rate 
+or using Adam with the default learning rate.
