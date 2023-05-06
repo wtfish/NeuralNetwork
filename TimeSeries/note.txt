@@ -1,1 +1,19 @@
-Jumlah window = jumlah data kebelakang untuk di training
+- Jumlah window = jumlah data kebelakang untuk di training
+- Loss pakai huber kalau data banyak outlier kalau banyak dan dikali 100 (pakai lambda) biar pas update bobot signifikan
+- return_sequences=true, membuat rnn sequence to sequence yaitu setiap neuron akan memberikan output sebanyak data ke layer setelahnya
+jika false maka sequence to vector yaitu sejumlah neuron
+- Kalau pakai RNN Expected input 3D (batch,window,feature)
+
+mis:
+batch = 4
+window = 30
+fitur = 1
+neuron = 40
+jika true maka (None,30,40)
+jika false maka (None,40)
+- misal 
+    _________________________________________________________________
+    Layer (type)                Output Shape              Param #   
+    =================================================================
+        lambda_2 (Lambda)           (None, 20, 1)             0     
+    maka None = batch || 20 Timestamp/window || 1 fitur
